@@ -3,6 +3,7 @@
 const fs = require('fs');
 const express = require('express');
 const authRouter = express.Router();
+const {io} = require('../server');
 
 const User = require('./user');
 const basicAuth = require('./middleware/basicAuth');
@@ -17,7 +18,8 @@ authRouter.post('/signup', async (req, res, next) => {
       user: userRecord,
       token: userRecord.token,
     };
-    res.status(201).json(output);
+    res.status(201).redirect('/');
+    // res.status(201).json(output);
   } catch (e) {
     next(e.message);
   }

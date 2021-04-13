@@ -6,7 +6,7 @@ const morgan = require('morgan');
 // Esoteric Resources
 const errorHandler = require('./errors-handlers/500');
 const notFound = require('./errors-handlers/404');
-const authRoutes = require('./router');
+const authRoutes = require('./auth/router');
 
 const app = express();
 app.use(express.json());

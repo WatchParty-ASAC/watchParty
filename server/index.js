@@ -8,6 +8,6 @@ const options = {
   useCreateIndex: true,
   useUnifiedTopology: true,
 };
-mongoose.connect(process.env.MONGODB_URI, options);
+// mongoose.connect(process.env.MONGODB_URI, options);
 
 require('./src/server').start(process.env.PORT)

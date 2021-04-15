@@ -1,0 +1,36 @@
+main {
+	display: flex;
+	height: 85vh;
+	background-color: aqua;
+}
+
+header {
+	height: 15vh;
+	background-color: blue;
+}
+main h2 {
+	position: absolute;
+	top: 5%;
+	left: 46%;
+	color: white;
+	font-size: 25px;
+}
+#chatContainer {
+	position: relative;
+}
+#chatBoard {
+	width: 50vw;
+	height: 50vh;
+	background-color: palevioletred;
+	margin: 58px 0px 0px 42px;
+	overflow-y: scroll;
+}
+#chatForm {
+	left: 40px;
+	position: absolute;
+	bottom: 129px;
+}
+#chatForm input {
+	width: 45.5vw;
+	height: 4vh;
+}

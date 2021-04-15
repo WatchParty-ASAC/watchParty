@@ -1,0 +1,41 @@
+main {
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#joinRoom {
+	height: 50%;
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: wheat;
+}
+
+input {
+	margin-bottom: 1rem;
+	width: 70%;
+	padding: 0.5rem;
+}
+
+.btn {
+	border: 2px solid black;
+	padding: 0.5rem 1rem;
+	margin-top: 2rem;
+	background-color: black;
+	color: white;
+	transition: all 0.5s ease-in-out;
+	letter-spacing: 0.15rem;
+	font-size: 1.1rem;
+	border-radius: 0.5rem;
+}
+
+.btn:hover {
+	cursor: pointer;
+	background-color: white;
+	color: black;
+}

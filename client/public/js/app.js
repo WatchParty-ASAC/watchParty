@@ -17,11 +17,13 @@ const { username, room } = Qs.parse(location.search, {
 });
 
 const options = {
-  transports: ['polling', 'websocket'],
+  transports: ['websocket'],
 };
 const socket = io('http://localhost:4000', options);
 
-socket.on('connection');
+socket.on('connect', ()=>{
+  console.log('connected!');
+});
 
 socket.emit('joinRoom', { username, room });
 

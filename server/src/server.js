@@ -25,6 +25,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '..', '..', 'client', 'public')));
+// console.log(path.join(__dirname,'..', 'public'));
 // app.use(express.static('../client/public'));
 
 // ----------- //

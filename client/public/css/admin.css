@@ -4,14 +4,41 @@ main {
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
-	background-color: brown;
+	background-image: url(./background.jpg);
 }
-
+.img{
+		/* background-image: url(./background.jpg);
+filter: blur(2px); */
+z-index: 1;
+position: absolute;
+}
+header{
+	position: fixed;
+}
+.menu{
+	font-size: 2rem;
+	color: wheat;
+}
 .video-container {
 	flex: 0 0 calc(45% - 1rem);
-	height: 50%;
+	height: 60%;
 }
-
+#videoUrl{
+	padding: 1.8%;
+	width: 77%;
+	background-color: wheat;
+}
+::-webkit-scrollbar {
+	width: 10px;
+}
+  
+::-webkit-scrollbar-track {
+	background: wheat; 
+}
+   
+::-webkit-scrollbar-thumb {
+	background: #561617; 
+}
 iframe {
 	width: 100%;
 	height: 100%;
@@ -19,9 +46,10 @@ iframe {
 
 #chatContainer {
 	flex: 0 0 calc(45% - 1rem);
-	height: 50%;
-	background-color: wheat;
-	color: brown;
+	margin-top:3%;
+	height: 67%;
+	background-color: black;
+	color: wheat;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -30,16 +58,17 @@ iframe {
 
 #chatContainer ul {
 	width: 100%;
-	height: 70%;
+	height: 100%;
 	overflow-y: scroll;
 }
 
 #chatContainer h2 {
 	text-align: center;
-	width: 100%;
-	font-size: 1.3rem;
-	padding: 0.5rem 0;
-	background-color: blue;
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+    background-color: black;
+    border-bottom: 1px solid;
 }
 
 #chatContainer form {
@@ -54,6 +83,7 @@ iframe {
 	padding: 0.5rem;
 	border-radius: 0.5rem;
 	border: none;
+	background-color: wheat;
 }
 
 #chatContainer form button {
@@ -61,10 +91,10 @@ iframe {
 }
 
 .btn {
-	border: 2px solid black;
+	border: 2px solid ;
 	padding: 0.5rem 1rem;
-	background-color: black;
-	color: white;
+	background-color: #561617;
+	color: wheat;
 	transition: all 0.5s ease-in-out;
 	letter-spacing: 0.12rem;
 	font-size: 1.1rem;
@@ -73,17 +103,18 @@ iframe {
 
 .btn:hover {
 	cursor: pointer;
-	background-color: white;
-	color: black;
+	background-color: wheat;
+	color: #561617;
 }
 
 #chatBoard li {
 	margin: 1rem;
-	background-color: green;
+	background-color: #561617;
 	width: 300px;
-	padding: 1rem;
+	padding: 0.5rem;
 	border-radius: 0.5rem;
 	word-wrap: break-word;
+	font-family: cursive;
 }
 
 #chatBoard li h3 {
@@ -98,9 +129,6 @@ iframe {
 	display: none;
 }
 
-header {
-	background-color: chartreuse;
-}
 
 .userAdmin {
 	pointer-events: none;

@@ -19,11 +19,8 @@ const { username, room } = Qs.parse(location.search, {
 const options = {
 	transports: ['websocket'],
 };
-<<<<<<< HEAD
+
 const socket = io();
-=======
-const socket = io('http://localhost:4000');
->>>>>>> 5dfab3c98ce55ac9deb469c90023cc78f6e63b43
 
 socket.on('connect', () => {
 	console.log('connected!');
@@ -46,68 +43,37 @@ socket.on('roomUsers', ({ room, users }) => {
 	}
 });
 
-<<<<<<< HEAD
-firstUser.addEventListener('submit', (e) => {
-	e.preventDefault();
+if (firstUser) {
+	firstUser.addEventListener('submit', (e) => {
+		e.preventDefault();
 
-	let videoUrl = e.target.videoUrl.value;
+		let videoUrl = e.target.videoUrl.value;
 
-	if (videoUrl) {
-		let index = videoUrl.indexOf('=');
-		let videoId = videoUrl.slice(index + 1, index + 12);
-		let link = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0`;
-		socket.emit('videoUrl', link);
-	}
-});
-
-chatForm.addEventListener('submit', (e) => {
-	e.preventDefault();
-
-	let msg = e.target.chat.value;
-
-	if (!msg) {
-		return false;
-	}
-
-	socket.emit('chatMessage', msg);
-
-	e.target.chat.value = '';
-	e.target.chat.focus();
-});
-=======
-if(firstUser){
-  firstUser.addEventListener('submit', (e) => {
-    e.preventDefault();
-  
-    let videoUrl = e.target.videoUrl.value;
-  
-    if (videoUrl) {
-      let index = videoUrl.indexOf('=');
-      let videoId = videoUrl.slice(index + 1, index + 12);
-      let link = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0`;
-      socket.emit('videoUrl', link);
-    }
-  });
+		if (videoUrl) {
+			let index = videoUrl.indexOf('=');
+			let videoId = videoUrl.slice(index + 1, index + 12);
+			let link = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0`;
+			socket.emit('videoUrl', link);
+		}
+	});
 }
 
-if(chatForm){
+if (chatForm) {
+	chatForm.addEventListener('submit', (e) => {
+		e.preventDefault();
 
-  chatForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-  
-    let msg = e.target.chat.value;
-  
-    if (!msg) {
-      return false;
-    }
-  
-    socket.emit('chatMessage', msg);
-  
-    e.target.chat.value = '';
-    e.target.chat.focus();
-  });
+		let msg = e.target.chat.value;
+
+		if (!msg) {
+			return false;
+		}
+
+		socket.emit('chatMessage', msg);
+
+		e.target.chat.value = '';
+		e.target.chat.focus();
+	});
 }
->>>>>>> 5dfab3c98ce55ac9deb469c90023cc78f6e63b43
 
 socket.on('message', (message) => {
 	chatBoard.innerHTML += `<li> <h3>${message.username} ${message.time}</h3> <p>${message.text}</p></li>`;
@@ -115,16 +81,16 @@ socket.on('message', (message) => {
 });
 
 socket.on('video', (link) => {
-	videoContainer.innerHTML = `<iframe id='video' src=${link} allowfullscreen allow="autoplay"></iframe>`;
+	videoContainer.innerHTML = `<iframe id='video' src=${link} allowfullscreen allow="autoplay">
+                </iframe>`;
 });
-
-
-
 
 /*________________________ Home Page Styling _____________________ */
 
 const wrap = document.querySelector('.wrap');
 
-wrap.addEventListener('click',()=>{
-  joinRoom.style.display = "flex";
-})
+if (wrap) {
+	wrap.addEventListener('click', () => {
+		joinRoom.style.display = 'flex';
+	});
+}

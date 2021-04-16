@@ -6,38 +6,55 @@ main {
 	align-items: center;
 	background-image: url(./background.jpg);
 }
-.img{
-		/* background-image: url(./background.jpg);
+.img {
+	/* background-image: url(./background.jpg);
 filter: blur(2px); */
-z-index: 1;
-position: absolute;
+	z-index: 1;
+	position: absolute;
 }
-header{
+header {
 	position: fixed;
 }
-.menu{
+.menu {
 	font-size: 2rem;
 	color: wheat;
 }
-.video-container {
+.container {
 	flex: 0 0 calc(45% - 1rem);
-	height: 60%;
+	height: 67%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
 }
-#videoUrl{
+
+.video-container {
+	height: 90%;
+	width: 100%;
+	margin-bottom: 1.5rem;
+}
+
+.firstUser {
+	height: 10%;
+	width: 100%;
+}
+
+#videoUrl {
 	padding: 1.8%;
 	width: 77%;
 	background-color: wheat;
 }
+
 ::-webkit-scrollbar {
 	width: 10px;
 }
-  
+
 ::-webkit-scrollbar-track {
-	background: wheat; 
+	background: wheat;
 }
-   
+
 ::-webkit-scrollbar-thumb {
-	background: #561617; 
+	background: #561617;
 }
 iframe {
 	width: 100%;
@@ -46,7 +63,7 @@ iframe {
 
 #chatContainer {
 	flex: 0 0 calc(45% - 1rem);
-	margin-top:3%;
+	/* margin-top: 3%; */
 	height: 67%;
 	background-color: black;
 	color: wheat;
@@ -64,11 +81,11 @@ iframe {
 
 #chatContainer h2 {
 	text-align: center;
-    width: 100%;
-    font-size: 1.5rem;
-    padding: 0.5rem 0;
-    background-color: black;
-    border-bottom: 1px solid;
+	width: 100%;
+	font-size: 1.5rem;
+	padding: 0.5rem 0;
+	background-color: black;
+	border-bottom: 1px solid;
 }
 
 #chatContainer form {
@@ -91,7 +108,7 @@ iframe {
 }
 
 .btn {
-	border: 2px solid ;
+	border: 2px solid;
 	padding: 0.5rem 1rem;
 	background-color: #561617;
 	color: wheat;
@@ -128,7 +145,6 @@ iframe {
 .hide {
 	display: none;
 }
-
 
 .userAdmin {
 	pointer-events: none;

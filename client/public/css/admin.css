@@ -1,0 +1,107 @@
+main {
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	background-color: brown;
+}
+
+.video-container {
+	flex: 0 0 calc(45% - 1rem);
+	height: 50%;
+}
+
+iframe {
+	width: 100%;
+	height: 100%;
+}
+
+#chatContainer {
+	flex: 0 0 calc(45% - 1rem);
+	height: 50%;
+	background-color: wheat;
+	color: brown;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#chatContainer ul {
+	width: 100%;
+	height: 70%;
+	overflow-y: scroll;
+}
+
+#chatContainer h2 {
+	text-align: center;
+	width: 100%;
+	font-size: 1.3rem;
+	padding: 0.5rem 0;
+	background-color: blue;
+}
+
+#chatContainer form {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	padding-bottom: 0.5rem;
+}
+
+#chatContainer form input {
+	flex: 0 0 calc(70% - 2rem);
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	border: none;
+}
+
+#chatContainer form button {
+	flex: 0 0 calc(30% - 3rem);
+}
+
+.btn {
+	border: 2px solid black;
+	padding: 0.5rem 1rem;
+	background-color: black;
+	color: white;
+	transition: all 0.5s ease-in-out;
+	letter-spacing: 0.12rem;
+	font-size: 1.1rem;
+	border-radius: 0.5rem;
+}
+
+.btn:hover {
+	cursor: pointer;
+	background-color: white;
+	color: black;
+}
+
+#chatBoard li {
+	margin: 1rem;
+	background-color: green;
+	width: 300px;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	word-wrap: break-word;
+}
+
+#chatBoard li h3 {
+	margin-bottom: 0.5rem;
+}
+
+#chatBoard li p {
+	letter-spacing: 0.1rem;
+}
+
+.hide {
+	display: none;
+}
+
+header {
+	background-color: chartreuse;
+}
+
+.userAdmin {
+	pointer-events: none;
+}

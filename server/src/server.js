@@ -1,6 +1,6 @@
 'use strict';
 
-// require('dotenv').config();
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
@@ -10,8 +10,8 @@ const path = require('path');
 const socket = require('socket.io');
 
 const io = socket(server, {
-  cors: { origin: '*' },
-  // transports: ['websocket', 'polling'],
+	cors: { origin: '*' },
+	// transports: ['websocket', 'polling'],
 });
 
 const { userJoin, getUsers, userLeave, currentUser } = require('./utilis/user');
@@ -24,68 +24,62 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '..', '..', 'client', 'public')));
-// console.log(path.join(__dirname,'..', 'public'));
-// app.use(express.static('../client/public'));
-
-// ----------- //
-io.listen(server);
+app.use(express.static(path.join(__dirname, '../../client/public')));
 
 io.on('connection', (socket) => {
-  console.log(socket.id);
-  //join room
-  socket.on('joinRoom', ({ username, room }) => {
-    const user = userJoin(socket.id, username, room);
+	console.log(socket.id);
+	//join room
+	socket.on('joinRoom', ({ username, room }) => {
+		const user = userJoin(socket.id, username, room);
 
-    socket.join(user.room);
+		socket.join(user.room);
 
-    //welcome for user
-    socket.emit(
-      'message',
-      messageTemplate(user.username, `welcome to ${user.room}`)
-    );
+		//welcome for user
+		socket.emit(
+			'message',
+			messageTemplate(user.username, `welcome to ${user.room}`),
+		);
 
-    //broadcast to all member
-    socket.broadcast
-      .to(user.room)
-      .emit(
-        'message',
-        messageTemplate(user.username, `${user.username} has joined`)
-      );
+		//broadcast to all member
+		socket.broadcast
+			.to(user.room)
+			.emit(
+				'message',
+				messageTemplate(user.username, `${user.username} has joined`),
+			);
 
-    //room info /// users
-    io.to(user.room).emit('roomUsers', {
-      room: user.room,
-      users: getUsers(user.room),
-    });
-  });
+		//room info /// users
+		io.to(user.room).emit('roomUsers', {
+			room: user.room,
+			users: getUsers(user.room),
+		});
+	});
 
-  socket.on('chatMessage', (msg) => {
-    const user = currentUser(socket.id);
+	socket.on('chatMessage', (msg) => {
+		const user = currentUser(socket.id);
 
-    io.to(user.room).emit('message', messageTemplate(user.username, msg));
-  });
+		io.to(user.room).emit('message', messageTemplate(user.username, msg));
+	});
 
-  socket.on('videoUrl', (videoUrl) => {
-    const user = currentUser(socket.id);
-    io.to(user.room).emit('video', videoUrl);
-  });
+	socket.on('videoUrl', (videoUrl) => {
+		const user = currentUser(socket.id);
+		io.to(user.room).emit('video', videoUrl);
+	});
 
-  socket.on('disconnect', () => {
-    const user = userLeave(socket.id);
+	socket.on('disconnect', () => {
+		const user = userLeave(socket.id);
 
-    if (user) {
-      io.to(user.room).emit(
-        'message',
-        messageTemplate(user.username, `${user.username} has left`)
-      );
-      io.to(user.room).emit('roomUsers', {
-        room: user.room,
-        users: getUsers(user.room),
-      });
-    }
-
-  });
+		if (user) {
+			io.to(user.room).emit(
+				'message',
+				messageTemplate(user.username, `${user.username} has left`),
+			);
+			io.to(user.room).emit('roomUsers', {
+				room: user.room,
+				users: getUsers(user.room),
+			});
+		}
+	});
 });
 
 // ----------- //
@@ -95,14 +89,12 @@ app.use(notFound);
 app.use(errorHandler);
 
 module.exports = {
-  // io,
-  server: app,
-  start: (port) => {
-    if (!port) {
-      throw new Error('Missing Port');
-    }
-    app.listen(port, () => {
-      console.log(`Server Up on ${port}`);
-    });
-  },
+	start: (port) => {
+		if (!port) {
+			throw new Error('Missing Port');
+		}
+		server.listen(port, () => {
+			console.log(`Server Up on ${port}`);
+		});
+	},
 };

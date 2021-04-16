@@ -1,4 +1,8 @@
 'use strict';
 
+const { start } = require('./src/server');
+
+// io.listen(server);
+
 require('dotenv').config();
-require('./src/server').start(process.env.PORT)
+start(process.env.PORT);

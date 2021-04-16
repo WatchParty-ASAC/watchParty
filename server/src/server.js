@@ -27,7 +27,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../../client/public')));
 
 io.on('connection', (socket) => {
-	console.log(socket.id);
 	//join room
 	socket.on('joinRoom', ({ username, room }) => {
 		const user = userJoin(socket.id, username, room);

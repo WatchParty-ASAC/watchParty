@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, '..', '..', 'client', 'public')));
 // app.use(express.static('../client/public'));
 
 // ----------- //
-// io.listen(server);
+io.listen(server);
 
 io.on('connection', (socket) => {
   console.log(socket.id);

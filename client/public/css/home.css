@@ -7,60 +7,64 @@ main {
 	background-image: url(background.jpg);
 	background-size: cover;
 }
-.img{
+.img {
 	position: absolute;
 	left: 50%;
-	top:15%;
-    transform: translateX(-50%);
+	top: 15%;
+	transform: translateX(-50%);
 	font-size: 2.5rem;
 	color: white;
 	z-index: 1;
 }
 #joinRoom {
 	height: 50%;
-    width: 40%;
-    display: none;
+	width: 40%;
+	display: none;
 	position: relative;
 	top: -500px;
 
 	animation: drop 2s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
-	box-shadow:0px 10px 13px -7px #000000;
-    background-color: rgba(0,0,0 ,0.7);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 75px;
+	box-shadow: 0px 10px 13px -7px #000000;
+	background-color: rgba(0, 0, 0, 0.7);
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 75px;
 }
 @keyframes drop {
-	0%{}
-	70%{ transform: translateY(550px); }
-	100%{ transform: translateY(500px); }
+	0% {
+	}
+	70% {
+		transform: translateY(550px);
+	}
+	100% {
+		transform: translateY(500px);
+	}
 }
 input {
 	color: darkgoldenrod;
-    margin-bottom: 1rem;
-    font-size: 20px;
-    width: 70%;
-    padding: 1%;
-    background-image: url(background.jpg);
-    border-radius: 20px;
-    border: 2px solid #924145;
-
+	margin-bottom: 1rem;
+	font-size: 20px;
+	width: 70%;
+	padding: 1%;
+	background-image: url(background.jpg);
+	border-radius: 20px;
+	border: 2px solid #924145;
 }
-input::placeholder{
+input::placeholder {
 	padding-left: 1rem;
 	letter-spacing: 0.1rem;
 }
 .btn {
-    border: 2px solid black;
-    padding: 0.5rem 1rem;
-    margin-top: 1rem;
-    background-color: #921922;
-    color: white;
-    transition: all 0.5s ease-in-out;
-    letter-spacing: 0.15rem;
-    font-size: 1.1rem;
-    border-radius: 0.5rem;
+	border: 2px solid black;
+	padding: 0.5rem 1rem;
+	margin-top: 1rem;
+	background-color: #921922;
+	color: white;
+	transition: all 0.5s ease-in-out;
+	letter-spacing: 0.15rem;
+	font-size: 1.1rem;
+	border-radius: 0.5rem;
 }
 
 .btn:hover {
@@ -72,63 +76,81 @@ input::placeholder{
 /* ----------------------------------------------------------------------------- */
 /* ----------------------------------------------------------------------------- */
 
-.wrap {
+#wrap {
+	cursor: pointer;
 	transition: all 1s ease-in-out;
 }
+
 .scene {
-	width:158px;
-	height:158px;
-	perspective:30em;
+	width: 158px;
+	height: 158px;
+	perspective: 30em;
 	position: relative;
 }
 
 .cube {
-	width:100%;
-	height:100%;
-	position:relative;
+	width: 100%;
+	height: 100%;
+	position: relative;
 	animation: spinning 10s infinite;
 	animation-timing-function: linear;
-	transform-style:preserve-3d;
+	transform-style: preserve-3d;
 }
 
 @keyframes spinning {
-	from  { transform:rotateX(0deg) rotateY(0deg);   }
-	to    { transform:rotateX(0deg) rotateY(360deg); }
+	from {
+		transform: rotateX(0deg) rotateY(0deg);
+	}
+	to {
+		transform: rotateX(0deg) rotateY(360deg);
+	}
 }
 
 .face {
-	width:100%;
-	height:100%;
-	position:absolute;
-	border:1px solid black;
-	
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	border: 1px solid black;
+
 	background-color: #8e8e8e;
-    background-image: linear-gradient(147deg, #000000 0%, #a24848 74%);
-	
-	color:#FFF;
-	line-height:10em;
-	text-align:center;
+	background-image: linear-gradient(147deg, #000000 0%, #a24848 74%);
+
+	color: #fff;
+	line-height: 10em;
+	text-align: center;
 }
 
-.front  { transform: rotateY(0deg) translateZ(5em); }
-.right  { transform: rotateY(90deg) translateZ(5em); }
-.left   { transform: rotateY(-90deg) translateZ(5em); }
-.back   { transform: rotateY(180deg) translateZ(5em); }
-.top    { transform: rotateX(90deg) translateZ(5em); }
-.bottom { transform: rotateX(-90deg) translateZ(5em); }
-
-.bottom{
-    top: 19px;
-    background-image: linear-gradient( 147deg, #000000 0%, #000000 0%);
-    filter: blur(23px);
+.front {
+	transform: rotateY(0deg) translateZ(5em);
 }
-.tri{
-	width: 0; 
-	height: 0; 
+.right {
+	transform: rotateY(90deg) translateZ(5em);
+}
+.left {
+	transform: rotateY(-90deg) translateZ(5em);
+}
+.back {
+	transform: rotateY(180deg) translateZ(5em);
+}
+.top {
+	transform: rotateX(90deg) translateZ(5em);
+}
+.bottom {
+	transform: rotateX(-90deg) translateZ(5em);
+}
+
+.bottom {
+	top: 19px;
+	background-image: linear-gradient(147deg, #000000 0%, #000000 0%);
+	filter: blur(23px);
+}
+.tri {
+	width: 0;
+	height: 0;
 	border-top: 30px solid transparent;
 	border-bottom: 30px solid transparent;
 	border-left: 55px solid rgb(0, 0, 0);
 	position: absolute;
-	top:45px;
-	left:55px;
+	top: 45px;
+	left: 55px;
 }

@@ -1,84 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-    crossorigin="anonymous" />
-  <link rel="stylesheet" href="./css/reset.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous" />
+    <link rel="stylesheet" href="./css/reset.css" />
 
-  <link rel="stylesheet" href="./css/admin.css" />
-  <title>Watch Party</title>
-</head>
+    <link rel="stylesheet" href="./css/admin.css" />
+    <title>Watch Party</title>
+  </head>
 
-<body>
-
-
-  <header>
-
-    <ul class="users"></ul>
-    <i class="fas fa-bars menu"></i>
-    <i class="fas fa-times Xmenu"></i>
-  </header>
-  <main>
-    <a id ="leave" href="http://localhost:4000/home.html">Leave Room</a>
+  <body>
 
 
-    <div class="container">
-      <div class="video-container">
+    <header>
+
+      <ul class="users"></ul>
+      <i class="fas fa-bars menu"></i>
+      <i class="fas fa-times Xmenu"></i>
+    </header>
+    <main>
+      <a id="leave" href="http://localhost:4000/home.html">Leave Room</a>
+
+
+      <div class="container">
+        <div class="video-container">
+        </div>
+        <!-- LikeBtn -->
+        <div>
+          <button id='btn_click'>Like <i class="fas fa-thumbs-up"></i> <span id="counter"></span></button>
+          <span id="counter"></span>
+        </div>
+
+        <form action="" class="firstUser">
+          <input type="text" name="videoUrl" id="videoUrl" placeholder="Put your video Url" required />
+          <button type="submit" class="btn">Submit</button>
+        </form>
+
       </div>
-      <form action="" class="firstUser">
-        <input type="text" name="videoUrl" id="videoUrl" placeholder="Put your video Url" required />
-        <button type="submit" class="btn">Submit</button>
-      </form>
-    </div>
-    <!-- LikeBtn -->
-    <div>
-      <p>
-        <button id='btn_click' class="">Like Me!</button>
-      </p>
-
-    <h3 class="room"></h3>
-    <div id="chatContainer">
-      <h2>Chat Board</h2>
-      <ul id="chatBoard">
-      </ul>
-      <form id="chatForm">
-        <input type="text" name="chat" id="chat" placeholder="type here" />
-        <button type="submit" class="btn">Send</button>
-      </form>
-    </div>
-  </main>
-
-      <p>Likes:<span id="counter">5</span></p>
-  </div>
-    <!-- <span class="likebtn-wrapper" data-theme="github" data-white_label="true" data-identifier="item_1"
-      data-counter_zero_show="true" data-counter_count="true"></span>
-    <script>(function (d, e, s) { if (d.getElementById("likebtn_wjs")) return; a = d.createElement(e); m = d.getElementsByTagName(e)[0]; a.async = 1; a.id = "likebtn_wjs"; a.src = s; m.parentNode.insertBefore(a, m) })(document, "script", "//w.likebtn.com/js/w/widget.js");</script> -->
-    <!-- LikeBtn -->
-    <div id="chatContainer">
-      <h2>Chat Board</h2>
-      <ul id="chatBoard">
-      </ul>
-      <form id="chatForm">
-        <input type="text" name="chat" id="chat" placeholder="type here" />
-        <button type="submit" class="btn">Send</button>
-      </form>
-    </div>
-  </main>
 
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js"
-    integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ=="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
-    integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
-    crossorigin="anonymous"></script>
-  <script src="js/app.js"></script>
-</body>
+      <h3 class="room"></h3>
+      <div id="chatContainer">
+        <h2>Chat Board</h2>
+        <ul id="chatBoard">
+        </ul>
+        <form id="chatForm">
+          <input type="text" name="chat" id="chat" placeholder="type here" />
+          <button type="submit" class="btn">Send</button>
+        </form>
+      </div>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js"
+      integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ=="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+  </body>
 
 </html>

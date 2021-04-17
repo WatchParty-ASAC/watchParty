@@ -8,12 +8,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 const path = require('path');
 const socket = require('socket.io');
-var counter = 8;
-var dislikes = 0;
-
 const io = socket(server, {
 	cors: { origin: '*' },
-	// transports: ['websocket', 'polling'],
 });
 
 const { userJoin, getUsers, userLeave, currentUser } = require('./utilis/user');
@@ -28,8 +24,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../../client/public')));
 
+let likes = 0;
+
 io.on('connection', (socket) => {
 	//join room
+
 	socket.on('joinRoom', ({ username, room }) => {
 		const user = userJoin(socket.id, username, room);
 
@@ -54,26 +53,24 @@ io.on('connection', (socket) => {
 			room: user.room,
 			users: getUsers(user.room),
 		});
-
 	});
 
 	socket.on('chatMessage', (msg) => {
 		const user = currentUser(socket.id);
-
 		io.to(user.room).emit('message', messageTemplate(user.username, msg));
 	});
 
 	socket.on('videoUrl', (videoUrl) => {
 		const user = currentUser(socket.id);
 		io.to(user.room).emit('video', videoUrl);
-		//Like Btn/////////////////////////////
-		socket.emit('click_count', counter);
+	});
 
-		socket.on('clicked', function () {
-			counter += 1;
+	//Like Btn/////////////////////////////
 
-			socket.emit('click_count', counter);
-		});
+	socket.on('click_count', () => {
+		const user = currentUser(socket.id);
+		++likes;
+		io.to(user.room).emit('clicked', likes);
 	});
 
 	socket.on('disconnect', () => {
@@ -91,7 +88,6 @@ io.on('connection', (socket) => {
 		}
 	});
 });
-
 
 // ----------- //
 

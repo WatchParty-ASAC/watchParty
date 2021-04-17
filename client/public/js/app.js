@@ -29,17 +29,20 @@ socket.on('connect', () => {
 socket.emit('joinRoom', { username, room });
 
 socket.on('roomUsers', ({ room, users }) => {
-	roomName.textContent = `Room Number ${room}`;
+	if (roomName) roomName.textContent = `Room Number ${room}`;
 
-	usersList.innerHTML = users
-		.map((user) => `<li>${user.username}</li>`)
-		.join('');
-	if (users[0].username === username) {
-		firstUser.classList.remove('hide');
-		videoContainer.classList.remove('userAdmin');
-	} else {
-		firstUser.classList.add('hide');
-		videoContainer.classList.add('userAdmin');
+	if (usersList) {
+		usersList.innerHTML = users
+			.map((user) => `<li>${user.username}</li>`)
+			.join('');
+
+		if (users[0].username === username) {
+			firstUser.classList.remove('hide');
+			videoContainer.classList.remove('userAdmin');
+		} else {
+			firstUser.classList.add('hide');
+			videoContainer.classList.add('userAdmin');
+		}
 	}
 });
 
@@ -54,16 +57,6 @@ if (firstUser) {
 			let videoId = videoUrl.slice(index + 1, index + 12);
 			let link = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0`;
 			socket.emit('videoUrl', link);
-			
-			// Like Btn
-			socket.on('click_count', function (value) {
-				$('#counter').html(value);
-			});
-
-			$('#btn_click').click(function () {
-				socket.emit('clicked');
-			});
-
 		}
 	});
 }
@@ -86,8 +79,10 @@ if (chatForm) {
 }
 
 socket.on('message', (message) => {
-	chatBoard.innerHTML += `<li> <h3>${message.username} ${message.time}</h3> <p>${message.text}</p></li>`;
-	chatBoard.scrollTop = chatBoard.scrollHeight;
+	if (chatBoard) {
+		chatBoard.innerHTML += `<li> <h3>${message.username} ${message.time}</h3> <p>${message.text}</p></li>`;
+		chatBoard.scrollTop = chatBoard.scrollHeight;
+	}
 });
 
 socket.on('video', (link) => {
@@ -95,10 +90,18 @@ socket.on('video', (link) => {
                 </iframe>`;
 });
 
+// Like Btn
+$('#btn_click').click(function () {
+	socket.emit('click_count');
+});
+
+socket.on('clicked', function (likes) {
+	document.querySelector('#counter').textContent = likes;
+});
 
 /*________________________ Home Page Styling _____________________ */
 
-const wrap = document.querySelector('.wrap');
+const wrap = document.querySelector('#wrap');
 
 if (wrap) {
 	wrap.addEventListener('click', () => {
@@ -111,16 +114,16 @@ if (wrap) {
 const menu = document.querySelector('.menu');
 const xMenu = document.querySelector('.Xmenu');
 
-if(menu){
-	menu.addEventListener('click',()=>{
+if (menu) {
+	menu.addEventListener('click', () => {
 		usersList.style.right = '0px';
 		usersList.style.top = '0px';
 		menu.style.display = 'none';
 		xMenu.style.display = 'block';
-	})
-	xMenu.addEventListener('click',()=>{
+	});
+	xMenu.addEventListener('click', () => {
 		usersList.style.right = '-1000px';
 		menu.style.display = 'block';
 		xMenu.style.display = 'none';
-	})
+	});
 }

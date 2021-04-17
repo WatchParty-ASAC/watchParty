@@ -29,7 +29,7 @@ socket.on('connect', () => {
 socket.emit('joinRoom', { username, room });
 
 socket.on('roomUsers', ({ room, users }) => {
-	roomName.textContent = room;
+	roomName.textContent = `Room Number ${room}`;
 
 	usersList.innerHTML = users
 		.map((user) => `<li>${user.username}</li>`)
@@ -93,4 +93,21 @@ if (wrap) {
 	wrap.addEventListener('click', () => {
 		joinRoom.style.display = 'flex';
 	});
+}
+
+const menu = document.querySelector('.menu');
+const xMenu = document.querySelector('.Xmenu');
+
+if(menu){
+	menu.addEventListener('click',()=>{
+		usersList.style.right = '0px';
+		usersList.style.top = '0px';
+		menu.style.display = 'none';
+		xMenu.style.display = 'block';
+	})
+	xMenu.addEventListener('click',()=>{
+		usersList.style.right = '-1000px';
+		menu.style.display = 'block';
+		xMenu.style.display = 'none';
+	})
 }

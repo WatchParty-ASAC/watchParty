@@ -36,7 +36,7 @@ io.on('connection', (socket) => {
 		//welcome for user
 		socket.emit(
 			'message',
-			messageTemplate(user.username, `welcome to ${user.room}`),
+			messageTemplate(user.username, `welcome to room ${user.room}`),
 		);
 
 		//broadcast to all member

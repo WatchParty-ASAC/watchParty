@@ -5,6 +5,7 @@ main {
 	justify-content: space-evenly;
 	align-items: center;
 	background-image: url(./background.jpg);
+	background-size: cover;
 }
 .img {
 	/* background-image: url(./background.jpg);
@@ -14,10 +15,62 @@ filter: blur(2px); */
 }
 header {
 	position: fixed;
+	height: 100vh;
+	right: 0px;
+}
+.room{
+	font-size: 2rem;
+	position: fixed;
+	top: 5%;
+    font-weight: 500;
+    color: wheat;
 }
 .menu {
-	font-size: 2rem;
+	font-size: 2.3rem;
 	color: wheat;
+	position: absolute;
+	right: 15px;
+	top: 10px;
+	cursor: pointer;
+	z-index: 1;
+	transition: all 0.5s ease-in-out;
+}
+.Xmenu{
+	font-size: 2.3rem;
+	position: absolute;
+	display: none;
+	right: 15px;
+	top: 10px;
+	color: rgb(86, 22 ,23);
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+.users{
+	position: absolute;
+	right: -1000px;
+	width: 12vw;
+	height: 100vh;
+	padding-top: 50px;
+	background: rgb(245 ,222, 179,0.8);
+	z-index: -1;
+	transition: all 0.5s ease-in-out;
+}
+.users li{
+	color: rgb(86, 22 ,23);
+	font-size: 1.3rem;
+	margin: 0% 0% 11% 15%;
+	position: relative;
+	transition: all 0.5s ease-in-out;
+}
+.users li::after{
+	content: '';
+	width: 10px;
+	height: 10px;
+	background: green;
+	border-radius: 50%;
+	position: absolute;
+	top: 7px;
+    left: -15px;
 }
 .container {
 	flex: 0 0 calc(45% - 1rem);
@@ -26,6 +79,21 @@ header {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
+}
+#leave{
+	text-decoration: none;
+    position: absolute;
+    font-size: 1.3rem;
+    text-align: center;
+    top: 5%;
+    left: 4%;
+    padding: 1%;
+    border: 2px solid;
+    border-radius: 12px;
+    width: 8%;
+    height: 3%;
+    color: wheat;
+    background: #963435;
 }
 
 .video-container {

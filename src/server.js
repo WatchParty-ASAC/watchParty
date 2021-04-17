@@ -24,10 +24,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
 
-let likes = 0;
-
 io.on('connection', (socket) => {
 	//join room
+	let likes = 0;
 
 	socket.on('joinRoom', ({ username, room }) => {
 		const user = userJoin(socket.id, username, room);

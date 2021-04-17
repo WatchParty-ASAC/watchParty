@@ -54,6 +54,16 @@ if (firstUser) {
 			let videoId = videoUrl.slice(index + 1, index + 12);
 			let link = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0`;
 			socket.emit('videoUrl', link);
+			
+			// Like Btn
+			socket.on('click_count', function (value) {
+				$('#counter').html(value);
+			});
+
+			$('#btn_click').click(function () {
+				socket.emit('clicked');
+			});
+
 		}
 	});
 }
@@ -85,6 +95,7 @@ socket.on('video', (link) => {
                 </iframe>`;
 });
 
+
 /*________________________ Home Page Styling _____________________ */
 
 const wrap = document.querySelector('.wrap');
@@ -94,6 +105,8 @@ if (wrap) {
 		joinRoom.style.display = 'flex';
 	});
 }
+
+// Like BTN
 
 const menu = document.querySelector('.menu');
 const xMenu = document.querySelector('.Xmenu');

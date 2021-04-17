@@ -9,6 +9,7 @@ const morgan = require('morgan');
 const path = require('path');
 const socket = require('socket.io');
 var counter = 8;
+var dislikes = 0;
 
 const io = socket(server, {
 	cors: { origin: '*' },
@@ -65,7 +66,7 @@ io.on('connection', (socket) => {
 	socket.on('videoUrl', (videoUrl) => {
 		const user = currentUser(socket.id);
 		io.to(user.room).emit('video', videoUrl);
-		//Like Btn
+		//Like Btn/////////////////////////////
 		socket.emit('click_count', counter);
 
 		socket.on('clicked', function () {

@@ -108,10 +108,6 @@ io.on('connection', (socket) => {
 
 // ----------- //
 
-// app('/', (req, res) => {
-// 	res.use(express.static(path.join(__dirname, '../public')));
-// });
-
 // Catchalls
 app.use(notFound);
 app.use(errorHandler);

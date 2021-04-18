@@ -2,8 +2,8 @@
 
 const users = [];
 
-function userJoin(id, username, room) {
-	const user = { id, username, room };
+function userJoin(id, username, room, likes) {
+	const user = { id, username, room, likes };
 	users.push(user);
 	return user;
 }
@@ -21,4 +21,9 @@ function currentUser(id) {
 	return users.find((user) => user.id === id);
 }
 
-module.exports = { userJoin, getUsers, userLeave, currentUser };
+function roomLikes(room) {
+	let usersRoom = users.filter((user) => user.room === room);
+	return usersRoom.reduce((acc, user) => (acc += user.likes), 0);
+}
+
+module.exports = { userJoin, getUsers, userLeave, currentUser, roomLikes };

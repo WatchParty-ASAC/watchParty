@@ -12,7 +12,13 @@ const io = socket(server, {
 	cors: { origin: '*' },
 });
 
-const { userJoin, getUsers, userLeave, currentUser } = require('./utilis/user');
+const {
+	userJoin,
+	getUsers,
+	userLeave,
+	currentUser,
+	roomLikes,
+} = require('./utilis/user');
 const messageTemplate = require('./utilis/messages');
 
 const errorHandler = require('./errors-handlers/500');
@@ -26,10 +32,10 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 io.on('connection', (socket) => {
 	//join room
-	let likes = 0;
+	// let likes = 0;
 
 	socket.on('joinRoom', ({ username, room }) => {
-		const user = userJoin(socket.id, username, room);
+		const user = userJoin(socket.id, username, room, 0);
 
 		socket.join(user.room);
 
@@ -64,11 +70,23 @@ io.on('connection', (socket) => {
 		io.to(user.room).emit('video', videoUrl);
 	});
 
+	socket.on('play', () => {
+		const user = currentUser(socket.id);
+		io.to(user.room).emit('playVideo');
+	});
+
+	socket.on('pause', () => {
+		const user = currentUser(socket.id);
+
+		io.to(user.room).emit('pauseVideo');
+	});
+
 	//Like Btn/////////////////////////////
 
 	socket.on('click_count', () => {
 		const user = currentUser(socket.id);
-		++likes;
+		user.likes++;
+		let likes = roomLikes(user.room);
 		io.to(user.room).emit('clicked', likes);
 	});
 
@@ -89,6 +107,10 @@ io.on('connection', (socket) => {
 });
 
 // ----------- //
+
+// app('/', (req, res) => {
+// 	res.use(express.static(path.join(__dirname, '../public')));
+// });
 
 // Catchalls
 app.use(notFound);

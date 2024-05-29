@@ -8,10 +8,10 @@ const cors = require('cors');
 const morgan = require('morgan');
 const path = require('path');
 const socket = require('socket.io');
-const io = socket(server, {
-	cors: { origin: '*' },
-});
-
+// const io = socket(server, {
+// 	cors: { origin: '*' },
+// });
+const io = new socket.Server(server)
 const {
 	userJoin,
 	getUsers,

@@ -22,7 +22,7 @@ const options = {
 	transports: ['websocket'],
 };
 
-const socket = io();
+const socket = io('https://watchparty-asac.github.io/watchParty');
 
 socket.on('connect', () => {
 	console.log('connected!');
